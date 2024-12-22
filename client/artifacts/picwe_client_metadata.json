@@ -1,0 +1,2069 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_feeRecipient",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_stableCoinAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_weusd",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_trader",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "AccessControlBadConfirmation",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "neededRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "AccessControlUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "EnforcedPause",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ExpectedPause",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "targetchainId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isBuy",
+						"type": "bool"
+					}
+				],
+				"name": "CancellationInitiated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newGasAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "GasAmountSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Paused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "targetchainId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isBuy",
+						"type": "bool"
+					}
+				],
+				"name": "RequestCancelled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "targetchainId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "stableCoinAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sourceStableCoinAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "stableCoinAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "finalPrice",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isBuy",
+						"type": "bool"
+					}
+				],
+				"name": "RequestCompleted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "targetchainId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "stableCoinAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sourceStableCoinAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "stableCoinAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "startPrice",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "endPrice",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "duration",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isBuy",
+						"type": "bool"
+					}
+				],
+				"name": "RequestCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "previousAdminRole",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "newAdminRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "RoleAdminChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "SourceStableCoinAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "SourceStableCoinRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "StableCoinTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Unpaused",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "PAUSER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TRADER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TRANSFER_MANAGER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "activeRequestCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "activeRequestIds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "addStableCoin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "balances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "requestIds",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "finalPrices",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchCompleteBuy",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "requestIds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchCompleteCancelBuyToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "requestIds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchCompleteCancelSellToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "requestIds",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "finalPrices",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchCompleteSell",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "requestIds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "batchForceCancelRequest",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_stableCoinAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_targetchainId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_tokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_stableCoinAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_sourceStableCoinAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_duration",
+						"type": "uint256"
+					}
+				],
+				"name": "buyTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "cancelFeePercentage",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "finalPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "completeBuy",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "completeCancelBuyToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "completeCancelSellToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "finalPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "completeSell",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "feePercentage",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "feeRecipient",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "forceCancelRequest",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "gasAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getActiveRequestCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "pageSize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "page",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "showAll",
+						"type": "bool"
+					}
+				],
+				"name": "getActiveRequestIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "pageSize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "page",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "showAll",
+						"type": "bool"
+					}
+				],
+				"name": "getActiveRequestsData",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "requestId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "user",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "targetchainId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "targettokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "targetstableCoinAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "sourceStableCoinAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "stableCoinAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "startPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "endPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isBuy",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint8",
+								"name": "status",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct IClientStructsEvents.RequestData[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "chainId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					}
+				],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "getRequest",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "requestId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "user",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "targetchainId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "targettokenAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "targetstableCoinAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "sourceStableCoinAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "stableCoinAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "startPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "endPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isBuy",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint8",
+								"name": "status",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct IClientStructsEvents.RequestData",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "getRequestIsBuy",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "getRequestStableCoinAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "getRequestStatus",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "getRequestTargetTokenAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "getRequestTokenAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "getRequestUser",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRoleAdmin",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "initiateCancelBuyToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					}
+				],
+				"name": "initiateCancelSellToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "precisionFactor",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "removeStableCoin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "callerConfirmation",
+						"type": "address"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "requestCancellationInitiated",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "requestCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "requestIdToActiveIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_targetchainId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_tokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_stableCoinAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_sourceStableCoinAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_stableCoinAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_duration",
+						"type": "uint256"
+					}
+				],
+				"name": "sellTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_cancelFeePercentage",
+						"type": "uint256"
+					}
+				],
+				"name": "setCancelFeePercentage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_feePercentage",
+						"type": "uint256"
+					}
+				],
+				"name": "setFeePercentage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_feeRecipient",
+						"type": "address"
+					}
+				],
+				"name": "setFeeRecipient",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_gasAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "setGasAmount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_precisionFactor",
+						"type": "uint8"
+					}
+				],
+				"name": "setPrecisionFactor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "supportedStableCoins",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferStableCoin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "unpause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"AccessControlBadConfirmation()": [
+					{
+						"details": "The caller of a function is not the expected one. NOTE: Don't confuse with {AccessControlUnauthorizedAccount}."
+					}
+				],
+				"AccessControlUnauthorizedAccount(address,bytes32)": [
+					{
+						"details": "The `account` is missing a role."
+					}
+				],
+				"EnforcedPause()": [
+					{
+						"details": "The operation failed because the contract is paused."
+					}
+				],
+				"ExpectedPause()": [
+					{
+						"details": "The operation failed because the contract is not paused."
+					}
+				]
+			},
+			"events": {
+				"Paused(address)": {
+					"details": "Emitted when the pause is triggered by `account`."
+				},
+				"RoleAdminChanged(bytes32,bytes32,bytes32)": {
+					"details": "Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole` `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite {RoleAdminChanged} not being emitted signaling this."
+				},
+				"RoleGranted(bytes32,address,address)": {
+					"details": "Emitted when `account` is granted `role`. `sender` is the account that originated the contract call, an admin role bearer except when using {AccessControl-_setupRole}."
+				},
+				"RoleRevoked(bytes32,address,address)": {
+					"details": "Emitted when `account` is revoked `role`. `sender` is the account that originated the contract call:   - if using `revokeRole`, it is the admin role bearer   - if using `renounceRole`, it is the role bearer (i.e. `account`)"
+				},
+				"Unpaused(address)": {
+					"details": "Emitted when the pause is lifted by `account`."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"addStableCoin(address)": {
+					"details": " This function is used to add a new stable coin to the supported stable coins. ",
+					"params": {
+						"token": "The address of the stable coin to add. "
+					}
+				},
+				"batchCompleteBuy(uint256[],uint256[])": {
+					"details": " This function is used to complete multiple buy requests. ",
+					"params": {
+						"finalPrices": "The final prices of the tokens. ",
+						"requestIds": "The IDs of the requests to complete."
+					}
+				},
+				"batchCompleteCancelBuyToken(uint256[])": {
+					"details": " This function is used to complete multiple buy request cancellations. ",
+					"params": {
+						"requestIds": "The IDs of the requests to complete cancellation. "
+					}
+				},
+				"batchCompleteCancelSellToken(uint256[])": {
+					"details": " This function is used to complete multiple sell request cancellations. ",
+					"params": {
+						"requestIds": "The IDs of the requests to complete cancellation. "
+					}
+				},
+				"batchCompleteSell(uint256[],uint256[])": {
+					"details": " This function is used to complete multiple sell requests. ",
+					"params": {
+						"finalPrices": "The final prices of the tokens. ",
+						"requestIds": "The IDs of the requests to complete."
+					}
+				},
+				"batchForceCancelRequest(uint256[])": {
+					"details": " This function is used to forcibly cancel multiple requests. ",
+					"params": {
+						"requestIds": "The IDs of the requests to cancel. "
+					}
+				},
+				"buyTokens(uint256,uint256,address,address,address,uint256,uint256,uint256,uint256)": {
+					"details": " This function is used to buy tokens. ",
+					"params": {
+						"_sourceStableCoinAddress": "The address of the stable coin to use for the purchase.",
+						"_stableCoinAddress": "The address of the stable coin to use for the purchase.",
+						"_stableCoinAmount": "The amount of stable coins to use for the purchase.",
+						"_targetchainId": "The ID of the chain to buy the tokens on.",
+						"_tokenAddress": "The address of the token to buy.",
+						"_tokenAmount": "The amount of tokens to buy. "
+					}
+				},
+				"completeBuy(uint256,uint256)": {
+					"details": " This function is used to complete a buy request. ",
+					"params": {
+						"finalPrice": "The final price of the tokens. ",
+						"requestId": "The ID of the request to complete."
+					}
+				},
+				"completeCancelBuyToken(uint256)": {
+					"details": "Completes the cancellation of a buy token request after confirmation on the target chain. ",
+					"params": {
+						"requestId": "The ID of the request to complete cancellation."
+					}
+				},
+				"completeCancelSellToken(uint256)": {
+					"details": "Completes the cancellation of a sell token request after confirmation on the target chain. ",
+					"params": {
+						"requestId": "The ID of the request to complete cancellation."
+					}
+				},
+				"completeSell(uint256,uint256)": {
+					"details": " This function is used to complete a sell request. ",
+					"params": {
+						"finalPrice": "The final price of the tokens. ",
+						"requestId": "The ID of the request to complete."
+					}
+				},
+				"forceCancelRequest(uint256)": {
+					"details": "Admin forcibly cancels an order",
+					"params": {
+						"requestId": "The ID of the order to cancel"
+					}
+				},
+				"getActiveRequestCount()": {
+					"details": "Get the number of active requests",
+					"returns": {
+						"_0": "The number of active requests"
+					}
+				},
+				"getActiveRequestIds(uint256,uint256,bool)": {
+					"details": "Get the active requests id",
+					"params": {
+						"page": "The page number",
+						"pageSize": "The page size",
+						"showAll": "If true, return all active requests regardless of pageSize and page"
+					},
+					"returns": {
+						"_0": "The active requests id, sorted with newest first"
+					}
+				},
+				"getActiveRequestsData(uint256,uint256,bool)": {
+					"details": "Get the active requests data",
+					"params": {
+						"page": "The page number",
+						"pageSize": "The page size",
+						"showAll": "If true, return all active requests regardless of pageSize and page"
+					},
+					"returns": {
+						"_0": "The active requests data, sorted with newest first"
+					}
+				},
+				"getBalance(address,uint256,address)": {
+					"details": " This function is used to get the balance of a user for a specific token on a specific chain. ",
+					"params": {
+						"chainId": "The ID of the chain.",
+						"tokenAddress": "The address of the token. ",
+						"user": "The address of the user."
+					},
+					"returns": {
+						"_0": "The balance of the user for the specified token on the specified chain."
+					}
+				},
+				"getRequest(uint256)": {
+					"details": " This function is used to query the details of a request with a specific ID. ",
+					"params": {
+						"requestId": "The ID of the request to query. "
+					},
+					"returns": {
+						"_0": "request A RequestData struct containing all details of the request."
+					}
+				},
+				"getRequestIsBuy(uint256)": {
+					"details": "Get whether the specified request is a buy request",
+					"params": {
+						"requestId": "The request ID"
+					},
+					"returns": {
+						"_0": "Whether the request is a buy request"
+					}
+				},
+				"getRequestStableCoinAmount(uint256)": {
+					"details": "Get the stable coin amount of the specified request",
+					"params": {
+						"requestId": "The request ID"
+					},
+					"returns": {
+						"_0": "The stable coin amount of the request"
+					}
+				},
+				"getRequestStatus(uint256)": {
+					"details": "Get the status of the specified request",
+					"params": {
+						"requestId": "The request ID"
+					},
+					"returns": {
+						"_0": "The status of the request"
+					}
+				},
+				"getRequestTargetTokenAddress(uint256)": {
+					"details": "Get the target token address of the specified request",
+					"params": {
+						"requestId": "The request ID"
+					},
+					"returns": {
+						"_0": "The target token address of the request"
+					}
+				},
+				"getRequestTokenAmount(uint256)": {
+					"details": "Get the token amount of the specified request",
+					"params": {
+						"requestId": "The request ID"
+					},
+					"returns": {
+						"_0": "The token amount of the request"
+					}
+				},
+				"getRequestUser(uint256)": {
+					"details": "Get the user address of the specified request",
+					"params": {
+						"requestId": "The request ID"
+					},
+					"returns": {
+						"_0": "The user address of the request"
+					}
+				},
+				"getRoleAdmin(bytes32)": {
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+				},
+				"grantRole(bytes32,address)": {
+					"details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event."
+				},
+				"hasRole(bytes32,address)": {
+					"details": "Returns `true` if `account` has been granted `role`."
+				},
+				"initiateCancelBuyToken(uint256)": {
+					"details": "Initiates the cancellation of a buy token request on the source chain. ",
+					"params": {
+						"requestId": "The ID of the request to initiate cancellation. "
+					}
+				},
+				"initiateCancelSellToken(uint256)": {
+					"details": "Initiates the cancellation of a sell token request on the source chain. ",
+					"params": {
+						"requestId": "The ID of the request to initiate cancellation. "
+					}
+				},
+				"paused()": {
+					"details": "Returns true if the contract is paused, and false otherwise."
+				},
+				"removeStableCoin(address)": {
+					"details": " This function is used to remove a stable coin from the supported stable coins. ",
+					"params": {
+						"token": "The address of the stable coin to remove. "
+					}
+				},
+				"renounceRole(bytes32,address)": {
+					"details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `callerConfirmation`. May emit a {RoleRevoked} event."
+				},
+				"revokeRole(bytes32,address)": {
+					"details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
+				},
+				"sellTokens(uint256,uint256,address,address,address,uint256,uint256,uint256,uint256)": {
+					"details": " This function is used to sell tokens. ",
+					"params": {
+						"_sourceStableCoinAddress": "The address of the stable coin to use for the purchase.",
+						"_stableCoinAddress": "The address of the stable coin to use for the purchase.",
+						"_stableCoinAmount": "The amount of stable coins to use for the purchase. ",
+						"_targetchainId": "The ID of the chain to sell the tokens on.",
+						"_tokenAddress": "The address of the token to sell.",
+						"_tokenAmount": "The amount of tokens to sell."
+					}
+				},
+				"setCancelFeePercentage(uint256)": {
+					"details": "Sets the cancellation fee percentage.",
+					"params": {
+						"_cancelFeePercentage": "The new cancellation fee percentage."
+					}
+				},
+				"setFeePercentage(uint256)": {
+					"details": "Sets the fee percentage.",
+					"params": {
+						"_feePercentage": "The new fee percentage."
+					}
+				},
+				"setFeeRecipient(address)": {
+					"details": "Sets the fee recipient address.",
+					"params": {
+						"_feeRecipient": "The address to which fees are sent."
+					}
+				},
+				"setGasAmount(uint256)": {
+					"details": "Sets the gas amount (gasAmount).",
+					"params": {
+						"_gasAmount": "The new gas amount. "
+					}
+				},
+				"setPrecisionFactor(uint8)": {
+					"details": "Sets the precision factor.",
+					"params": {
+						"_precisionFactor": "The new precision factor."
+					}
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				},
+				"transferStableCoin(address,address,uint256)": {
+					"details": " This function is used to transfer stable coins from the contract to another address. ",
+					"params": {
+						"amount": "The amount of stable coins to transfer. ",
+						"to": "The address to transfer the stable coins to.",
+						"token": "The address of the stable coin to transfer."
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addStableCoin(address)": {
+					"notice": "This function can only be called by users with the DEFAULT_ADMIN_ROLE.A StableCoinAdded event will be triggered after the stable coin is added."
+				},
+				"batchCompleteBuy(uint256[],uint256[])": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"batchCompleteCancelBuyToken(uint256[])": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"batchCompleteCancelSellToken(uint256[])": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"batchCompleteSell(uint256[],uint256[])": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"batchForceCancelRequest(uint256[])": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"buyTokens(uint256,uint256,address,address,address,uint256,uint256,uint256,uint256)": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"completeBuy(uint256,uint256)": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"completeSell(uint256,uint256)": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"initiateCancelBuyToken(uint256)": {
+					"notice": "This function can only be called by the user who created the request or by an admin."
+				},
+				"initiateCancelSellToken(uint256)": {
+					"notice": "This function can only be called by the user who created the request or an admin."
+				},
+				"removeStableCoin(address)": {
+					"notice": "This function can only be called by users with the DEFAULT_ADMIN_ROLE.A StableCoinRemoved event will be triggered after the stable coin is removed."
+				},
+				"sellTokens(uint256,uint256,address,address,address,uint256,uint256,uint256,uint256)": {
+					"notice": "This function can only be called by users with the TRADER_ROLE."
+				},
+				"setGasAmount(uint256)": {
+					"notice": "This function can only be called by users with the DEFAULT_ADMIN_ROLE.A GasAmountSet event will be triggered after successful setting."
+				},
+				"transferStableCoin(address,address,uint256)": {
+					"notice": "This function can only be called by users with the TRANSFER_MANAGER_ROLE."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"client/client.sol": "picwe_client"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/AccessControl.sol": {
+			"keccak256": "0xa0e92d42942f4f57c5be50568dac11e9d00c93efcb458026e18d2d9b9b2e7308",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://46326c0bb1e296b67185e81c918e0b40501b8b6386165855df0a3f3c634b6a80",
+				"dweb:/ipfs/QmTwyrDYtsxsk6pymJTK94PnEpzsmkpUxFuzEiakDopy4Z"
+			]
+		},
+		"@openzeppelin/contracts/access/IAccessControl.sol": {
+			"keccak256": "0xb6b36edd6a2999fd243ff226d6cbf84bd71af2432bbd0dfe19392996a1d9cb41",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1fd2f35495652e57e3f99bc6c510bc5f7dd398a176ea2e72d8ed730aebc6ca26",
+				"dweb:/ipfs/QmTQV6X4gkikTib49cho5iDX3JvSQbdsoEChoDwrk3CbbH"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
+				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0xaa761817f6cd7892fcf158b3c776b34551cde36f48ff9703d53898bc45a94ea2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ad7c8d4d08938c8dfc43d75a148863fb324b80cf53e0a36f7e5a4ac29008850",
+				"dweb:/ipfs/QmcrhfPgVNf5mkdhQvy1pMv51TFokD3Y4Wa5WZhFqVh8UV"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"@openzeppelin/contracts/utils/Pausable.sol": {
+			"keccak256": "0xb2e5f50762c27fb4b123e3619c3c02bdcba5e515309382e5bfb6f7d6486510bd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1a4b83328c98d518a2699c2cbe9e9b055e78aa57fa8639f1b88deb8b3750b5dc",
+				"dweb:/ipfs/QmXdcYj5v7zQxXFPULShHkR5p4Wa2zYuupbHnFdV3cHYtc"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+			"keccak256": "0x9e8778b14317ba9e256c30a76fd6c32b960af621987f56069e1e819c77c6a133",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1777404f1dcd0fac188e55a288724ec3c67b45288e49cc64723e95e702b49ab8",
+				"dweb:/ipfs/QmZFdC626GButBApwDUvvTnUzdinevC3B24d7yyh57XkiA"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0x4296879f55019b23e135000eb36896057e7101fb7fb859c5ef690cf14643757b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87b3541437c8c443ccd36795e56a338ed12855eec17f8da624511b8d1a7e14df",
+				"dweb:/ipfs/QmeJQCtZrQjtJLr6u7ZHWeH3pBnjtLWzvRrKViAi7UZqxL"
+			]
+		},
+		"client/ClientInternal.sol": {
+			"keccak256": "0x1d48a93af5ffed009116b9dc062d4cba40990534883b6c30c9f66a6ab18686bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d38f7ac23db2f0d22d21c77b4ae8cd184c2ffc5f183e363dffbf2d53b5b03588",
+				"dweb:/ipfs/QmTmseWfxV8sSeN97ftuVYur38T4iuF3ReY1t8xYJmrqAC"
+			]
+		},
+		"client/IClientStructsEvents.sol": {
+			"keccak256": "0xf7aab9fafc6cc308d997fab3a9c50422ca0a9e6c7f0d9c2af71c4bd50947a3a8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6d3f3302b5f2a92d41301014c7a244c81f82295a574ec0f300db5141f424d260",
+				"dweb:/ipfs/QmcnarGSToJ3oLh9VeVQusagfSk8pSDWGtWNAkTXFS8gFS"
+			]
+		},
+		"client/client.sol": {
+			"keccak256": "0xdb9ac6fcca892068fa8eaf99346ef5c5e4308a7caff6dd2786eaeccf7692d09e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fa7a05e7433a560cb3ed9ce27bf6a0a5e4bc59f60f668999c250de7200dc8386",
+				"dweb:/ipfs/QmNd38pmiLx7rF9FgXAwCZxxzQLitXmeR22ZNFJcZLQWUx"
+			]
+		}
+	},
+	"version": 1
+}
